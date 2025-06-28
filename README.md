@@ -1,0 +1,180 @@
+# What is this?
+Actively developed large-scale web scraping project
+
+- [ x ] - working/implemented
+- [  ] - planning to add
+
+# Manga Sources
+- [ x ] Asurascans
+- [ x ] Bato
+- [ x ] Manganato
+- [ x ] Mangadex
+- [ x ] Mangareader
+- [ x ] Mangapark
+- [ x ] Mangapill
+- [ x ] FlamesScans
+- [ x ] Vyvymanga
+- [ x ] Mangahere
+- [  ] Comick
+- [  ] Cubari Proxy
+- [  ] Weeb Central
+- [  ] Bookwalker
+- [  ] Rakuten Kobo
+- [  ] Mangago
+- [  ] Mangabuddy
+- [  ] KaliScan
+- [  ] MangaHasu
+- [  ] AllManga
+- [  ] MangaKatana
+- [  ] MangaHub
+- [  ] MangaPlus
+- [  ] Mangageko
+- [  ] Taadd
+- [  ] Webtoons
+- [  ] Dynasty Reader
+- [  ] Toonily
+- [  ] Tapas
+- [  ] GodaComic
+- [  ] Mangafox
+- [  ] MangaBTT
+- [  ] MangaTab
+- [  ] MangaFun
+- [  ] Hachi
+- [  ] MangaFreak
+- [  ] NovaManga
+- [  ] HolyManga
+- [  ] Atsumaru
+- [  ] Toomics
+- [  ] Manhwaz
+- [  ] ManhwaTop
+- [  ] Mangazin
+- [  ] 1stKissManga
+- [  ] Harimanga
+- [  ] Shiroko Manga
+- [  ] Anipaca Manga
+- [  ] ComicManga
+- [  ] MangaPeak
+- [  ] MangaTown
+- [  ] Pixiv Comics
+- [  ] RawOtaku
+- [  ] KT9
+- [  ] Nicomanga
+- [  ] RawUwU
+- [  ] BilingualManga
+- [  ] Raw Manga
+- [  ] MangaRaw
+- [  ] 漫画raw
+- [  ] RawLazy
+- [  ] RawKuma
+- [  ] MangaMate
+- [  ] SenManga
+- [  ] NewToki
+- [  ] Nicelink
+- [  ] Toonkor
+- [  ] Baozi Manhua
+- [  ] ColaManga
+- [  ] OniManga
+- [  ] Projectsuki
+- [  ] Danke Furs Lesen
+- [  ] Zero Scans
+- [  ] Hachirumi
+- [  ] ReaperScans
+- [  ] AnigliScans
+- [  ] Flame Comics
+- [  ] Hive Scans
+- [  ] Demonicscans
+- [  ] TemplteScan
+- [  ] ErosScan
+- [  ] LSComic
+- [  ] MangaDemon
+- [  ] MangaBay
+- [  ] Todaymanga
+- [  ] Freemanga
+- [  ] ComicFans
+- [  ] Nine Anime
+- [  ] Mangasail
+- [  ] Manhwasco
+- [  ] MangaSaki
+- [  ] Kissmanga.in
+- [  ] MangaGojo
+- [  ] MangaClash
+- [  ] MangaDoom
+- [  ] Mangaready
+- [  ] MangaZoro
+- [  ] MangaRead
+- [  ] Mangasub
+- [  ] Aqua Manga
+- [  ] Mangahot
+- [  ] CoffeeManga
+- [  ] Retsu
+- [  ] ReadManga
+- [  ] MangaKomi
+- [  ] Mangasushi
+- [  ] SnowMTL
+
+# Anime Sources
+- [  ] AnimeKai
+- [  ] Animepahe
+- [  ] HiAnime
+- [  ] AnimeZ
+- [  ] AnimeStream
+- [  ] KickAssAnime
+- [  ] Miruro
+- [  ] Gojo
+- [  ] AnimeOwl
+- [  ] WCO
+- [  ] ANIMEGG
+- [  ] Anime Nexus
+- [  ] AnimeOnsen
+- [  ] AnimeHeaven
+- [  ] Shiroko
+- [  ] BestDubbedAnime
+- [  ] Hikari
+- [  ] AllAnime
+- [  ] Sudatchi
+- [  ] Anime defenders
+- [  ] AniZone
+- [  ] AniPlay
+- [  ] Anime Realms
+- [  ] Anikoto
+- [  ] Animixplay.name
+- [  ] AnimeParadise
+- [  ] HIDIVE
+- [  ] AniWorld
+- [  ] AnimeHub
+- [  ] Kisskh
+- [  ] Kawaiifu
+- [  ] Kuudere
+- [  ] Anime-stream
+- [  ] Animelon
+- [  ] Otaku-Streamers
+- [  ] Okarun
+- [  ] Animia
+- [  ] AniverseHD
+- [  ] Aniwave.lv
+- [  ] Freek
+- [  ] KimoiTV
+- [  ] Anineww
+- [  ] AnimeTribes
+- [  ] AnimeNoSub
+- [  ] Animetvslash
+- [  ] AniGo
+- [  ] Animegers
+- [  ] Anisaga
+- [  ] Enimoe
+- [  ] 123animes
+- [  ] Granime
+- [  ] Animesuki
+- [  ] Anipaca
+- [  ] AnimeZia
+- [  ] Kiraanime
+- [  ] Showanime
+- [  ] Animeland
+- [  ] AnimeTake
+- [  ] AnimeEpisodeSeries
+- [  ] Kayonimetv
+- [  ] AnimeWorld
+- [  ] Toostream
+- [  ] Toonbaba
+- [  ] AnimeDekho
+- [  ] AnimeDUB
