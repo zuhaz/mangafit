@@ -6,16 +6,16 @@ Actively developed large-scale web scraping project
 
 # Manga Sources
 - [ x ] Asurascans
-- [ x ] Bato
+- [ x ] Bato [not working]
 - [ x ] Manganato
 - [ x ] Mangadex
 - [ x ] Mangareader
 - [ x ] Mangapark
 - [ x ] Mangapill
-- [ x ] FlamesScans
+- [ x ] FlamesScans [partially working]
 - [ x ] Vyvymanga
 - [ x ] Mangahere
-- [  ] Comick
+- [ x  ] Comick [not working]
 - [  ] Cubari Proxy
 - [  ] Weeb Central
 - [  ] Bookwalker
