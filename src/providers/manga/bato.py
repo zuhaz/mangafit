@@ -28,7 +28,7 @@ class Bato:
             "chapters": [],
         }
 
-        url = f"{self.base_url}/title/{manga_id}"
+        url = f"{self.base_url}/series/{manga_id}"
         try:
             response = self.client.get(url)
             response.raise_for_status()
@@ -99,7 +99,7 @@ class Bato:
             
     def fetch_chapter_pages(self, chapter_id: str) -> List[Dict]:
         try:
-            url = f"{self.base_url}/title/{chapter_id}"
+            url = f"{self.base_url}/chapter/{chapter_id}"
             response = self.client.get(url, headers={'Referer': url})
             response.raise_for_status()
 

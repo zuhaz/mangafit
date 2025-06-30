@@ -22,6 +22,9 @@ class FlameScans:
         try:
             query = query.replace(" ", "%20")
             html_data = self._get_request(f"/series/?title={query}")
+            with open("search.html", "w", encoding="utf-8") as f:
+                f.write(html_data)
+            exit()
             soup = BeautifulSoup(html_data, "html.parser")
 
             search_manga_selector = (
@@ -59,87 +62,74 @@ class FlameScans:
         try:
             html_data = self._get_request(f"/series/{manga_id}")
             soup = BeautifulSoup(html_data, "html.parser")
-            series_title_selector = "h1.entry-title"
-            series_artist_selector = "div.tsinfo.bixbox div:nth-child(5) i"
-            series_author_selector = "div.tsinfo.bixbox div:nth-child(4) i"
-            series_description_selector = "[itemprop='description']"
-            series_alt_name_selector = ".alternative"
-            series_genre_selector = "div.wd-full span a"
-            series_status_selector = "div.tsinfo.bixbox div:nth-child(2) i"
-            series_thumbnail_selector = "[itemprop='image'] img"
-            series_chapters_selector = "#chapterlist li"
-
-            manga_info["title"] = soup.select_one(series_title_selector).text.strip()
-            manga_info["altTitles"] = (
-                [
-                    alt.strip().replace("\n", " ")
-                    for alt in soup.select_one(series_alt_name_selector).text.split("|")
-                ]
-                if soup.select_one(series_alt_name_selector)
-                else []
-            )
-            manga_info["description"] = soup.select_one(
-                series_description_selector
-            ).text.strip()
+            
+            title_meta = soup.select_one("meta[property='og:title']")
+            manga_info["title"] = title_meta["content"] if title_meta else ""
+            
+            desc_meta = soup.select_one("meta[property='og:description']")
+            manga_info["description"] = desc_meta["content"].strip() if desc_meta else ""
+            
+            image_meta = soup.select_one("meta[property='og:image']")
+            manga_info["image"] = image_meta["content"] if image_meta else ""
             manga_info["headerForImage"] = {"Referer": self.base_url}
-            manga_info["image"] = soup.select_one(series_thumbnail_selector)["src"]
-            manga_info["releasedDate"] = soup.select_one(
-                "div.tsinfo.bixbox div:nth-child(3) i"
-            ).text.strip()
-            manga_info["genres"] = [
-                genre.text for genre in soup.select(series_genre_selector)
-            ]
-            manga_info["status"] = soup.select_one(series_status_selector).text.strip()
-            manga_info["authors"] = (
-                [
-                    author.strip()
-                    for author in soup.select_one(series_author_selector)
-                    .text.replace("-", "")
-                    .split(",")
-                ]
-                if soup.select_one(series_author_selector)
-                else []
-            )
-            manga_info["artist"] = (
-                soup.select_one(series_artist_selector).text.strip()
-                if soup.select_one(series_artist_selector)
-                else "N/A"
-            )
-            manga_info["serialization"] = soup.select_one(
-                "div.tsinfo.bixbox div:nth-child(6) i"
-            ).text.strip()
-            manga_info["chapters"] = [
-                {
-                    "id": (
-                        el.select_one("a")["href"].split("/")[3]
-                        if el.select_one("a")
-                        else ""
-                    ),
-                    "title": el.select_one(".lch a, .chapternum")
-                    .text.strip()
-                    .replace("\n", " "),
-                    "releasedDate": el.select_one(".chapterdate").text,
-                }
-                for el in soup.select(series_chapters_selector)
-            ]
-            print(soup.select("div.listupd div div a"))
-            manga_info["similar_series"] = []
-            for el in soup.select(".listupd .bs .bsx a"):
-                rating_el = el.select_one(".rt .numscore")
-                rating = rating_el.text.strip() if rating_el else None
+            
+            # Disputed: too lazy to fix atp 
+            # status_badge = soup.select_one("div.mantine-Badge-root span.mantine-Badge-label")
+            # manga_info["status"] = status_badge.text.strip() if status_badge else "Unknown"
+            
+            genre_badges = soup.select(".SeriesPage_badge__2tZ7A")
+            manga_info["genres"] = [badge.text.strip() for badge in genre_badges] if genre_badges else []
+            
+            info_fields = soup.select(".SeriesPage_infoField__NWzAH")
+            info_values = soup.select(".SeriesPage_infoValue__Ty4ck")
+            
+            for i, field in enumerate(info_fields):
+                field_text = field.text.strip().lower()
+                if i < len(info_values):
+                    value_text = info_values[i].text.strip()
+                    
+                    if "artist" in field_text:
+                        manga_info["artist"] = value_text
+                    elif "author" in field_text:
+                        manga_info["authors"] = [value_text]
+                    elif "publisher" in field_text:
+                        manga_info["serialization"] = value_text
+                    elif "release year" in field_text:
+                        manga_info["releasedDate"] = value_text
+                    elif "type" in field_text:
+                        manga_info["type"] = value_text
+            
+            # Extract chapters
+            chapter_links = soup.select(".ChapterCard_chapterWrapper__j8pBx")
+            chapters = []
+            
+            for link in chapter_links:
+                chapter_title = link.select_one("p[data-line-clamp='true']")
+                chapter_date = link.select_one("p[data-size='xs']")
                 
-                status_el = el.select_one(".status i")
-                status = status_el.text.strip() if status_el else None
-                
-                similar = {
-                    "id": el.get("href", "").split("/series/")[1].replace("/", ""),
-                    "title": el.select_one(".tt").text.strip() if el.select_one(".tt") else "",
-                    "image": el.select_one("img").get("src", "") if el.select_one("img") else "",
-                    "rating": rating,
-                    "status": status
-                }
-                manga_info["similar_series"].append(similar)
-
+                if chapter_title and link.get("href"):
+                    chapter_id = link["href"].split("/")[-1] if link.get("href") else ""
+                    title = chapter_title.text.strip()
+                    date = chapter_date.text.strip() if chapter_date else ""
+                    
+                    chapters.append({
+                        "id": chapter_id,
+                        "title": title,
+                        "releasedDate": date
+                    })
+            
+            manga_info["chapters"] = chapters
+            
+            # Set default values for missing fields
+            if "artist" not in manga_info:
+                manga_info["artist"] = "N/A"
+            if "authors" not in manga_info:
+                manga_info["authors"] = []
+            if "serialization" not in manga_info:
+                manga_info["serialization"] = "N/A"
+            if "releasedDate" not in manga_info:
+                manga_info["releasedDate"] = "N/A"
+            
             return manga_info
         except requests.HTTPError as e:
             raise ValueError(f"HTTP Error: {str(e)}")

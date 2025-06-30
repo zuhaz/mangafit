@@ -4,6 +4,7 @@ from comick import Comick
 from mangapill import MangaPill
 from asurascans import AsuraScans
 from mangapark import Mangapark
+from flamescans import FlameScans
 import asyncio
 import json
 
@@ -16,6 +17,7 @@ def main():
     comick = Comick()
     asurascans = AsuraScans()
     mangapark = Mangapark()
+    flamescans = FlameScans()
     # # Test search functionality
     # print("Searching for 'one piece'...")
     # search_results = manga_reader.search("one piece")
@@ -72,39 +74,39 @@ def main():
     #     json.dump(manga_info, f)
     
     # chapter_id = "the-overpowered-veteran-healer/iCqYxsfA-chapter-22-en"
-    manga_info = mangapark.fetch_manga_info("77410-en-omniscient-reader")
-    search_term = mangapark.search("naruto")
-    chapter_pages = mangapark.fetch_chapter_pages("124815-en-the-steward-demonic-emperor/9710108-chapter-711")
-    print(search_term)
-    with open("search.json", "w", encoding="utf-8") as f:
-        json.dump(search_term, f)
-    print(chapter_pages)
-    with open("chapter_pages.json", "w") as f:
-        json.dump(chapter_pages, f)
-    print(manga_info)
-    with open("manga_info.json", "w", encoding="utf-8") as f:
-        json.dump(manga_info, f)
+    # manga_info = mangapark.fetch_manga_info("77410-en-omniscient-reader")
+    # search_term = mangapark.search("naruto")
+    # chapter_pages = mangapark.fetch_chapter_pages("124815-en-the-steward-demonic-emperor/9710108-chapter-711")
+    # print(search_term)
+    # with open("search.json", "w", encoding="utf-8") as f:
+    #     json.dump(search_term, f)
+    # print(chapter_pages)
+    # with open("chapter_pages.json", "w") as f:
+    #     json.dump(chapter_pages, f)
+    # print(manga_info)
+    # with open("manga_info.json", "w", encoding="utf-8") as f:
+    #     json.dump(manga_info, f)
     
-    # Test new Mangapark functions
-    print("\nTesting Mangapark Home Page...")
-    latest_releases = mangapark.get_latest_releases()
-    print(f"Found {len(latest_releases)} latest releases")
-    with open("latest_releases.json", "w", encoding="utf-8") as f:
-        json.dump(latest_releases, f)
+    # # Test new Mangapark functions
+    # print("\nTesting Mangapark Home Page...")
+    # latest_releases = mangapark.get_latest_releases()
+    # print(f"Found {len(latest_releases)} latest releases")
+    # with open("latest_releases.json", "w", encoding="utf-8") as f:
+    #     json.dump(latest_releases, f)
     
-    print("\nTesting Mangapark Genres...")
-    genres = mangapark.get_genres()
-    print(f"Found {len(genres)} genres")
-    print(genres)
-    with open("genres.json", "w", encoding="utf-8") as f:
-        json.dump(genres, f)
+    # print("\nTesting Mangapark Genres...")
+    # genres = mangapark.get_genres()
+    # print(f"Found {len(genres)} genres")
+    # print(genres)
+    # with open("genres.json", "w", encoding="utf-8") as f:
+    #     json.dump(genres, f)
     
-    # Test manga in different categories
-    if latest_releases:
-        print("\nTesting a manga from latest releases...")
-        latest_manga_id = latest_releases[0]["id"]
-        latest_manga_info = mangapark.fetch_manga_info(latest_manga_id)
-        print(f"Title: {latest_manga_info['title']}")
+    # # Test manga in different categories
+    # if latest_releases:
+    #     print("\nTesting a manga from latest releases...")
+    #     latest_manga_id = latest_releases[0]["id"]
+    #     latest_manga_info = mangapark.fetch_manga_info(latest_manga_id)
+    #     print(f"Title: {latest_manga_info['title']}")
 
     # chapter_id = "the-overpowered-veteran-healer/iCqYxsfA-chapter-22-en"
     # manga_info = comick.fetch_manga_info("the-overpowered-veteran-healer")
@@ -131,5 +133,20 @@ def main():
     # print(manga_info)
     # with open("manga_info.json", "w", encoding="utf-8") as f:
     #     json.dump(manga_info, f)
+
+    manga_info = flamescans.fetch_manga_info("23")
+    # search_term = flamescans.search("naruto")
+    # chapter_pages = flamescans.fetch_chapter_pages("ec6bdc2415e0c908")
+    # print(search_term)
+    # with open("search.json", "w", encoding="utf-8") as f:
+    #     json.dump(search_term, f)
+    # print(chapter_pages)
+    # with open("chapter_pages.json", "w") as f:
+    #     json.dump(chapter_pages, f)
+    print(manga_info)
+    with open("manga_info.json", "w", encoding="utf-8") as f:
+        json.dump(manga_info, f)
+
+    
 if __name__ == "__main__":
     main()
