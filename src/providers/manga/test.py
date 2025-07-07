@@ -4,7 +4,7 @@ from comick import Comick
 from mangapill import MangaPill
 from asurascans import AsuraScans
 from mangapark import Mangapark
-from flamescans import FlameScans
+from flamecomics import FlameComics
 import asyncio
 import json
 
@@ -17,7 +17,7 @@ def main():
     comick = Comick()
     asurascans = AsuraScans()
     mangapark = Mangapark()
-    flamescans = FlameScans()
+    flamecomics = FlameComics()
     # # Test search functionality
     # print("Searching for 'one piece'...")
     # search_results = manga_reader.search("one piece")
@@ -134,18 +134,14 @@ def main():
     # with open("manga_info.json", "w", encoding="utf-8") as f:
     #     json.dump(manga_info, f)
 
-    manga_info = flamescans.fetch_manga_info("23")
-    # search_term = flamescans.search("naruto")
-    # chapter_pages = flamescans.fetch_chapter_pages("ec6bdc2415e0c908")
-    # print(search_term)
-    # with open("search.json", "w", encoding="utf-8") as f:
-    #     json.dump(search_term, f)
-    # print(chapter_pages)
-    # with open("chapter_pages.json", "w") as f:
-    #     json.dump(chapter_pages, f)
-    print(manga_info)
-    with open("manga_info.json", "w", encoding="utf-8") as f:
-        json.dump(manga_info, f)
+    # manga_info = flamecomics.fetch_manga_info("23")
+    chapter_pages = flamecomics.fetch_chapter_pages("series/104/6c9f524d1a74d3c3")
+    print(chapter_pages)
+    with open("chapter_pages.json", "w") as f:
+        json.dump(chapter_pages, f)
+    # print(manga_info)
+    # with open("manga_info.json", "w", encoding="utf-8") as f:
+    #     json.dump(manga_info, f)
 
     
 if __name__ == "__main__":

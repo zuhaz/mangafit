@@ -3,12 +3,12 @@ from bs4 import BeautifulSoup
 from typing import List, Dict, Optional
 
 
-class FlameScans:
+class FlameComics:
     def __init__(self):
-        self.name = "FlameScans"
+        self.name = "FlameComics"
         self.base_url = "https://flamecomics.xyz/"
         self.logo = "https://i.imgur.com/Nt1MW3H.png"
-        self.class_path = "MANGA.FlameScans"
+        self.class_path = "MANGA.FlameComics"
         self.headers = {
             "User-Agent": "Mozilla/5.0",
         }
@@ -17,43 +17,7 @@ class FlameScans:
         response = requests.get(f"{self.base_url}{url}", headers=self.headers)
         response.raise_for_status()
         return response.text
-
-    def search(self, query: str) -> Dict:
-        try:
-            query = query.replace(" ", "%20")
-            html_data = self._get_request(f"/series/?title={query}")
-            with open("search.html", "w", encoding="utf-8") as f:
-                f.write(html_data)
-            exit()
-            soup = BeautifulSoup(html_data, "html.parser")
-
-            search_manga_selector = (
-                ".utao .uta .imgu, .listupd .bs .bsx, .listo .bs .bsx"
-            )
-            results = []
-            for el in soup.select(search_manga_selector):
-                link = el.select_one("a")
-                img = el.select_one("img")
-                results.append(
-                    {
-                        "id": (
-                            link["href"].split("/series/")[1].replace("/", "")
-                            if link
-                            else ""
-                        ),
-                        "title": link["title"] if link else "",
-                        "image": img["src"] if img else "",
-                        "status": soup.select_one("div.status i").text.strip() if soup.select_one("div.status i") else None,
-                        "rating": soup.select_one(".mobile-rt .numscore").text.strip() if soup.select_one(".mobile-rt .numscore") else None
-                    }
-                )
-
-            return {"results": results}
-        except requests.HTTPError as e:
-            raise ValueError(f"HTTP Error: {str(e)}")
-        except Exception as e:
-            raise ValueError(f"Error: {str(e)}")
-
+    
     def fetch_manga_info(self, manga_id: str) -> Dict:
         manga_info = {
             "id": manga_id,
@@ -113,7 +77,7 @@ class FlameScans:
                     date = chapter_date.text.strip() if chapter_date else ""
                     
                     chapters.append({
-                        "id": chapter_id,
+                        "id": "series/" + manga_id + "/"+ chapter_id,
                         "title": title,
                         "releasedDate": date
                     })
@@ -140,8 +104,7 @@ class FlameScans:
         try:
             html_data = self._get_request(f"/{chapter_id}")
             soup = BeautifulSoup(html_data, "html.parser")
-
-            page_selector = "div#readerarea img, #readerarea div.figure_container div.composed_figure"
+            page_selector = "div.m_6d731127.mantine-Stack-root img"
             pages = [
                 {
                     "img": el["src"],

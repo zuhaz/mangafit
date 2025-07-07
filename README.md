@@ -12,11 +12,10 @@ Actively developed large-scale web scraping project
 - [ x ] Mangareader
 - [ x ] Mangapark
 - [ x ] Mangapill
-- [ x ] FlamesScans [partially working]
+- [ x ] FlamesComics [partially working]
 - [ x ] Vyvymanga
 - [ x ] Mangahere
 - [ x  ] Comick [not working]
-- [  ] Cubari Proxy
 - [  ] Weeb Central
 - [  ] Bookwalker
 - [  ] Rakuten Kobo
