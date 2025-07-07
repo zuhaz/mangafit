@@ -16,7 +16,7 @@ Actively developed large-scale web scraping project
 - [ x ] Vyvymanga
 - [ x ] Mangahere
 - [ x  ] Comick [not working]
-- [  ] Weeb Central
+- [ x ] Weeb Central
 - [  ] Bookwalker
 - [  ] Rakuten Kobo
 - [  ] Mangago

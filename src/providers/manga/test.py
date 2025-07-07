@@ -5,6 +5,7 @@ from mangapill import MangaPill
 from asurascans import AsuraScans
 from mangapark import Mangapark
 from flamecomics import FlameComics
+from weebcentral import WeebCentral
 import asyncio
 import json
 
@@ -18,6 +19,7 @@ def main():
     asurascans = AsuraScans()
     mangapark = Mangapark()
     flamecomics = FlameComics()
+    weebcentral = WeebCentral()
     # # Test search functionality
     # print("Searching for 'one piece'...")
     # search_results = manga_reader.search("one piece")
@@ -135,14 +137,27 @@ def main():
     #     json.dump(manga_info, f)
 
     # manga_info = flamecomics.fetch_manga_info("23")
-    chapter_pages = flamecomics.fetch_chapter_pages("series/104/6c9f524d1a74d3c3")
-    print(chapter_pages)
-    with open("chapter_pages.json", "w") as f:
-        json.dump(chapter_pages, f)
+    # chapter_pages = flamecomics.fetch_chapter_pages("series/104/6c9f524d1a74d3c3")
+    # print(chapter_pages)
+    # with open("chapter_pages.json", "w") as f:
+    #     json.dump(chapter_pages, f)
     # print(manga_info)
     # with open("manga_info.json", "w", encoding="utf-8") as f:
     #     json.dump(manga_info, f)
 
+    # manga_info = weebcentral.fetch_manga_info("01J76XYH3NP2PBAA7D0ASA1GA8/Auto-Hunting-With-My-Clones")
+    search_term = weebcentral.search("bleach")
+    # chapter_pages = weebcentral.fetch_chapter_pages("01JZJFVJTR5ZFZ0R3YFGYN6DSG")
+    print(search_term)
+    with open("search.json", "w", encoding="utf-8") as f:
+        json.dump(search_term, f)
+    # print(chapter_pages)
+    # with open("chapter_pages.json", "w") as f:
+    #     json.dump(chapter_pages, f)
+    # print(manga_info)
+    # with open("manga_info.json", "w", encoding="utf-8") as f:
+    #     json.dump(manga_info, f)
     
+
 if __name__ == "__main__":
     main()
